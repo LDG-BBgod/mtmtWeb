@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react'
+import { Route, Routes } from 'react-router-dom'
+
+import PcMain from './screen/pc/Main'
+import MoMain from './screen/mo/Main'
 
 function App() {
+  const [isPC, setIsPc] = useState(window.innerWidth > 800)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/*" Component={isPC ? PcMain : MoMain} />
+      </Routes>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
